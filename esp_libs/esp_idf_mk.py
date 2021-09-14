@@ -9,8 +9,8 @@ class ESPGeneralComp(module.AbstractModule):
     """
     Compile component of esp32
     """
-    def __init__(self, path, component:esp_cmake.ESPComponent):
-        super().__init__(path)
+    def __init__(self, component:esp_cmake.ESPComponent):
+        super().__init__()
         self.component = component
         self.module_name = component.name
         self.name = component.name
@@ -35,5 +35,5 @@ if not 'clean-all' in sys.argv:
     for comp in components:
         @module.ModuleClass
         class ESPModule(ESPGeneralComp):
-            def __init__(self, path):
-                super().__init__(os.getcwd(), component=comp)
+            def __init__(self):
+                super().__init__(component=comp)
